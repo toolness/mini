@@ -15,7 +15,6 @@ function myCode(){
 //Change the force of the jump to reach the goal.
 function makeJump(sprite) {
 	force = 5;
-
     sprite.setSpeed(force, 270);
 }
 

@@ -1,16 +1,14 @@
-function myCode(){
-	//Variables. Store your values. You can reuse these value.
-	platformWidth = 30;
-	platformColor = "black";
+function myCode(){	
+	//Use the width and height variables when creating new platforms
+	platformWidth = 80;
+	platformHeight = 20;
 	
-	//We are using the platformWidth variable to give our platforms a width of 30.
-	platform1 = createSprite(30, 100, platformWidth, 10);
-	platform2 = createSprite(90, 200, platformWidth, 10);
-
-
-	    
-	//We are using the platformColor variable to give platforms 2,3 and 4, a black color.
-	platform1.shapeColor = "blue";
-	platform2.shapeColor = platformColor;
-
+	//Remember black platforms have been corrupted
+	platformColor = "orange";
+	
+	platform1 = createSprite(40, 100, platformWidth, platformHeight);
+	platform1.shapeColor = platformColor;
+	
+	//Make two new platforms called platform2 and platform3
+	
 }
