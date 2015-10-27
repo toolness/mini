@@ -1,4 +1,4 @@
-function myCode(){
+function myCode(){	
 	//Somebody messed up the code and the platforms are not properly aligned
 	//Change the numbers so you can reach the goal
 	platform1 = createSprite(40, 100, 80, 10);
