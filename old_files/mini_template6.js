@@ -11,11 +11,10 @@ function myCode(){
 	
 }
 
-//These is the spell or Functions, as they're known in the ALPHA world.
+//These is the power or Function, as they're known in the ALPHA world.
 //Change the force of the jump to reach the goal.
 function makeJump(sprite) {
-	force = 10;
-
+	force = 5;
     sprite.setSpeed(force, 270);
 }
 
