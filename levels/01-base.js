@@ -1,3 +1,5 @@
+GOAL_REACHED_TEXT = "JavaScript unlocked!";
+
 function base_setupLevel() {
   var platform1 = createPlatform(WIDTH/2, 460, 640, 10);
   platform1.shapeColor = 'green';
@@ -7,12 +9,6 @@ function base_setupLevel() {
 }
 
 function base_drawLevel() {
-  if (goalReached) {
-    fill('red');
-    textAlign(CENTER);
-    text("Javascript unlocked!", WIDTH/2, HEIGHT/2);
-  }
-
   if (isPlayerOnPlatform()) {
     player.velocity.y = 0;
   }

@@ -1,8 +1,12 @@
 var WIDTH = 640;
 var HEIGHT = 480;
 
+var GRAVITY = -0.2;
+
 var PLAYER_START_X = 20;
 var PLAYER_START_Y = 300;
+
+var GOAL_REACHED_TEXT = "Goal reached!";
 
 var player, particles, platforms, goalReached;
 
@@ -39,12 +43,15 @@ function draw() {
     playerInput();
 
     if (goalReached) {
-        showNextLevelButton();
+        fill('red');
+        textAlign(CENTER);
+        text(GOAL_REACHED_TEXT, WIDTH/2, HEIGHT/2);
         particles.addParticle();
         particles.run();
     }
 
     if (player.overlap(goal)) {
+        showNextLevelButton();
         goalReached = true;
     }
 
@@ -88,7 +95,7 @@ function resetOnGameOver() {
 }
 
 function gravity(sprite) {
-    sprite.addSpeed(-0.2, 270);
+    sprite.addSpeed(GRAVITY, 270);
 }
 
 function playerInput() {
