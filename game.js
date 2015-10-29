@@ -8,6 +8,8 @@ var PLAYER_START_Y = 300;
 
 var GOAL_REACHED_TEXT = "Goal reached!";
 
+var UNLOCK_GRID_LEVEL = 2;
+
 var player, particles, platforms, goalReached;
 
 function setup() {
@@ -33,7 +35,7 @@ function setup() {
 function draw() {
     clear();
 
-    drawGrid();
+    if (currentLevel > UNLOCK_GRID_LEVEL) drawGrid();
 
     fill("red");
     textSize(24);
