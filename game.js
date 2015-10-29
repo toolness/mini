@@ -4,8 +4,7 @@ var HEIGHT = 480;
 var PLAYER_START_X = 20;
 var PLAYER_START_Y = 300;
 
-var player, particles, platforms, currentLevel, goalReached;
-var setupLevel, drawLevel;
+var player, particles, platforms, goalReached;
 
 function setup() {
     var myCanvas = createCanvas(WIDTH, HEIGHT);
@@ -23,12 +22,7 @@ function setup() {
     player = createSprite(PLAYER_START_X, PLAYER_START_Y, 20, 20);
     player.shapeColor = 'Aqua';
 
-    currentLevel = parseInt(window.sessionStorage['currentLevel']);
-    if (isNaN(currentLevel)) currentLevel = 1;
-
-    setupLevel = window['setupLevel' + currentLevel] || doNothing;
-    drawLevel = window['drawLevel' + currentLevel] || doNothing;
-
+    base_setupLevel();
     setupLevel();
 }
 
@@ -45,6 +39,7 @@ function draw() {
     playerInput();
 
     if (goalReached) {
+        showNextLevelButton();
         particles.addParticle();
         particles.run();
     }
@@ -61,17 +56,21 @@ function draw() {
 
     drawSprites();
 
-    for (var i = 0; i < platforms.length; i++) {
-        if (player.overlap(platforms[i]) & player.velocity.y > 0) {
-            makeJump(player);
-        }
-    }
-
     resetOnGameOver();
 
     drawDialogue();
 
+    base_drawLevel();
     drawLevel();
+}
+
+function isPlayerOnPlatform() {
+    for (var i = 0; i < platforms.length; i++) {
+        if (player.overlap(platforms[i]) & player.velocity.y > 0) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function createPlatform() {
@@ -91,10 +90,6 @@ function gravity(sprite) {
     sprite.addSpeed(-0.2, 270);
 }
 
-function makeJump(sprite) {
-    sprite.setSpeed(5.5, 270);
-}
-
 function playerInput() {
     if (keyIsDown(LEFT_ARROW)) {
         player.position.x = player.position.x - 5;
@@ -106,7 +101,4 @@ function playerInput() {
 
 function mouseClicked() {
     mouseClickedDialogue();
-}
-
-function doNothing() {
 }
