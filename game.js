@@ -74,7 +74,9 @@ function draw() {
 function isPlayerOnPlatform() {
     for (var i = 0; i < platforms.length; i++) {
         if (player.overlap(platforms[i]) & player.velocity.y > 0) {
-            return true;
+            if (platforms[i].shapeColor.toLowerCase() !== 'black') {
+                return true;
+            }
         }
     }
     return false;
