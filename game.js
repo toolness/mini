@@ -17,6 +17,8 @@ function setup() {
     myCanvas.parent('p5_canvas');
 
     setupDialogue();
+    dialogue[0].text = "Edit " + currentLevelFilename +
+                       " to hack this level.";
 
     goalReached = false;
     goal = createSprite(600, 40, 30, 30);

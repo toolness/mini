@@ -1,6 +1,9 @@
 var currentLevel = parseInt(window.sessionStorage['currentLevel']);
+var currentLevelFilename;
 
 if (isNaN(currentLevel)) currentLevel = 1;
+
+currentLevelFilename = 'levels/0' + currentLevel + '.js';
 
 if (currentLevel > 1) {
   document.getElementById('previous').style.display = 'block';
@@ -34,4 +37,4 @@ function drawLevel() {}
 document.write('<script src="levels/0' + currentLevel + '-base.js"></script>');
 
 // Load the normal level file for the current level.
-document.write('<script src="levels/0' + currentLevel + '.js"></script>');
+document.write('<script src="' + currentLevelFilename + '"></script>');
