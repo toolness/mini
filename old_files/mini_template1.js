@@ -5,6 +5,6 @@ function myCode(){
 	
 	//TIP The level has a WIDTH of 640 and a HEIGHT of 480
 	platform1 = createSprite(40, 100, 80, 10);
-    platform2 = createSprite(120, 120, 520, 10);
+    platform2 = createSprite(60, 180, 80, 10);
     platform3 = createSprite(510, 400, 80, 10);
 }

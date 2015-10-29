@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.17/p5.min.js"></script>
-    <script type="text/javascript" src="http://elasticbeanstalk-us-west-2-171842701542.s3.amazonaws.com/p5.play.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="p5.js"></script>
+    <script src="p5.play.js"></script>
     <style>
     canvas {
         border: 2px solid red;
@@ -25,16 +24,15 @@
     WIDTH = 640;
     HEIGHT = 480;
     player_start_x = 20;
-    player_start_y = HEIGHT - 80;
-	goalX = 600;
-	goalY = 440;
+    player_start_y = 300;
+
 
     function setup() {
         myCanvas = createCanvas(WIDTH, HEIGHT);
         myCanvas.parent('p5_canvas');
 
         goalReached = false;
-        goal = createSprite(goalX, goalY, 30, 30);
+        goal = createSprite(600, 40, 30, 30);
         goal.shapeColor = 'yellow';
 
         system = new ParticleSystem(createVector(width / 2, 50));
@@ -45,16 +43,12 @@
         // Player
         player = createSprite(player_start_x, 				player_start_y, 20, 20);
         player.shapeColor = 'Aqua';
-		
-		
-        // Platforms
-        platforms = new Group();
-        platform1 = createSprite(WIDTH/2, 460, 640, 10);
-	    //Store platforms in an array
-	    platform1.shapeColor = 'green';
 
-	    platforms.add(platform1);
-       
+        // Platforms
+
+        myCode();
+
+        
 
         // ------------------ END: Variables
 
@@ -64,6 +58,10 @@
         // ------------------ START: Draw function body
         clear();
 
+        drawInstructions();
+
+		drawGrid();
+		
 		fill("red");
 		textSize(24);
 		textFont("Georgia");
@@ -74,15 +72,10 @@
         if (goalReached) {
             system.addParticle();
             system.run();
-            player.position.x = goalX;
-            player.position.y = goalY;
         }
 
         if (player.overlap(goal)) {
             goalReached = true;
-            fill('red');
-            textAlign(CENTER);
-            text("Javascript unlocked!", WIDTH/2, HEIGHT/2);
         }
 
 
@@ -98,8 +91,8 @@
 
 
         for (var i = 0; i < platforms.length; i++) {
-            if (player.collision(platforms[i]) & player.velocity.y > 0){
-            	player.velocity.y = 0;           		
+            if (player.overlap(platforms[i]) & player.velocity.y > 0){
+                makeJump(player);
             }
         };
 
@@ -108,10 +101,6 @@
     }
     // ****************** YOUR CODE ENDS HERE ******************
 
-	Sprite.prototype.collision = function(target){
-		return this.overlap(target);
-	}
-	
     function resetOnGameOver(){
         if(player.position.y > HEIGHT){
             player.position.x = player_start_x;
@@ -153,14 +142,12 @@
             player.position.x = player.position.x + 5;
         }
     }
-    
-    
 
     //Particle system. Modified from the source code in http://p5js.org/examples/examples/Simulate_Particle_System.php
     // A simple Particle class
     var Particle = function(position) {
         this.acceleration = createVector(0, 0.05);
-        this.velocity = createVector(random(-1, 1), random(-1, 0));
+        this.velocity = createVector(random(-3, 3), random(-1, 0));
         this.position = position.copy();
         this.lifespan = 255.0;
     };
@@ -179,7 +166,7 @@
 
     // Method to display
     Particle.prototype.display = function() {
-        c = color(255, 0, 0, this.lifespan);
+        c = color(0, 0, random(200, 255), this.lifespan);
         fill(c);
 
         ellipse(this.position.x, this.position.y, 12, 12);
@@ -213,7 +200,7 @@
         }
     };
     </script>
-    <script src="mini_template0.js"></script>
+    <script src="mini_template_final.js"></script>
 </body>
 
 </html>
