@@ -73,8 +73,9 @@ function isPlayerOnPlatform() {
     return false;
 }
 
-function createPlatform() {
-    var platform = createSprite.apply(this, arguments);
+function createPlatform(x, y, width, height, color) {
+    var platform = createSprite(x, y, width, height);
+    platform.shapeColor = color || 'green';
     platforms.add(platform);
     return platform;
 }
