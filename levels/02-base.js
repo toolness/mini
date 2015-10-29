@@ -1,6 +1,7 @@
+PLAYER_START_X = 20;
+PLAYER_START_Y = 50;
+
 function base_setupLevel() {
-  player.position.x = 20;
-  player.position.y = 50;
   goal.position.x = 600;
   goal.position.y = 440;
 }
