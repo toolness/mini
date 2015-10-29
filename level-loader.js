@@ -10,12 +10,12 @@ function showNextLevelButton() {
   document.getElementById('next').style.display = 'block';
 }
 
-function goToPreviousLevel() {
+function previousLevel() {
   window.sessionStorage['currentLevel'] = currentLevel - 1;
   window.location.reload();
 }
 
-function goToNextLevel() {
+function nextLevel() {
   window.sessionStorage['currentLevel'] = currentLevel + 1;
   window.location.reload();
 }
